@@ -1,3 +1,6 @@
+const Course = require('../models/Course');
+const { mutipleMongooseToObject } = require('../../util/mongoose')
+
 class Newscontroller {
     // [GET] /news
     index(req, res) {
