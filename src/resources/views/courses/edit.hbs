@@ -1,0 +1,19 @@
+<div class="m-4">
+    <h2>Sua khoa hoc</h2>
+
+    <form method="POST" action="/courses/{{course._id}}?_method=PUT">
+        <div class="form-group">
+            <label for="name">Name course</label>
+            <input type="text" class="form-control" value="{{course.name}}" id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description">{{course.description}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="videoid">VideoId</label>
+            <input type="text" class="form-control" value="{{course.videoid}}" id="videoid" name="videoid">
+        </div>
+        <button type="submit" class="btn btn-primary">Updated Course</button>
+    </form>
+</div>
