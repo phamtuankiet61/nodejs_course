@@ -1,7 +1,7 @@
 <div class="m-4">
     <div>
-        <h2>My Courses</h2>
-        <a href="/me/bin/courses">Thùng rác</a>
+        <a href="/me/stored/courses">Danh sách khóa học</a>
+        <h2>Khóa học đã xóa</h2>
     </div>
 
     <table class="table mt-4">
@@ -21,16 +21,16 @@
                     <td>{{this.slug}}</td>
                     <td>{{this.createdAt}}</td>
                     <td>
-                        <a href="/courses/{{this._id}}/edit" class="btn btn-link">Updated</a>
-                        <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#deleteCourse">Delete</a>
+                        <a href="" class="btn btn-link btn-restore" data-id="{{this._id}}">Restore</a>
+                        <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#deleteCourse">Again delete</a>
                     </td>
                 </tr>
 
             {{else}}
                 <tr>
                     <td colspan="5" class="text-center">
-                        Bạn chưa đăng khóa học nào.
-                        <a href="/courses/create">Đăng khóa học</a>
+                        Thùng rác trống.
+                        <a href="/me/stored/courses">Danh sách khóa học</a>
                     </td>
                 </tr>
             {{/each}}
@@ -60,6 +60,7 @@
 </div>
 
 <form name="delete-course-name" method="POST"></form>
+<form name="restore-course-name" method="POST"></form>
 
 <script>
     document.onreadystatechange = function () {
@@ -67,6 +68,8 @@
             var courseId;
             var btnDeleteCourse = document.querySelector('#btn-delete-course');
             var deleteForm = document.forms['delete-course-name'];
+            var restoreForm = document.forms['restore-course-name'];
+            var restoreBtn = $('.btn-restore');
 
             $('#deleteCourse').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget);
@@ -74,9 +77,18 @@
             })
 
             btnDeleteCourse.onclick = () => {
-                deleteForm.action = `/courses/${courseId}?_method=DELETE`;
+                deleteForm.action = `/courses/${courseId}/force?_method=DELETE`;
                 deleteForm.submit()
             }
+
+            // Restore btn clicked
+            restoreBtn.click(function(e) {
+                e.preventDefault()
+                var courseId = $(this).data('id');
+                restoreForm.action = `/courses/${courseId}/restore?_method=PATCH`;
+                restoreForm.submit()
+            })
+
         }
     }
 </script>
