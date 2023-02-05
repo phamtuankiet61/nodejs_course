@@ -1,4 +1,4 @@
-<form class="m-4" method="POST" action="/courses/handle-form-actions">
+<form class="m-4" method="POST" action="/courses/handle-form-actions-stored">
     <div>
         <h2>My Courses</h2>
         <a href="/me/bin/courses">Thùng rác ({{deletedCountDocuments}})</a>
@@ -87,7 +87,7 @@
             var courseItemCheckbox = $('input[name="courseIds[]"]');
             var checkAllSubmitBtn = $('.check-all-submit-btn');
 
-            // When dialog confirm cliked
+            // When dialog confirm clicked
             $('#deleteCourse').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget);
                 courseId = button.data('id');
