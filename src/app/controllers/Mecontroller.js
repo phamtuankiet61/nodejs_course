@@ -9,19 +9,11 @@ class Mecontroller {
             .then(([courses, deletedCountDocuments]) => {
                 res.render('me/storedCourses', {
                     courses: mutipleMongooseToObject(courses),
-                    deletedCountDocuments
+                    deletedCountDocuments: deletedCountDocuments.length,
                 })
             })
             .catch(next);
-
-
-
-        // Course.find({})
-        //     .then(courses => res.render('me/storedCourses', {
-        //         courses: mutipleMongooseToObject(courses)
-        //     }))
-        //     .catch(next)
-        
+            
     }
     // [GET] /me/bin/courses
     binCourses(req, res, next) {

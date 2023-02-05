@@ -64,6 +64,22 @@ class Coursescontroller {
             .then(() => res.redirect('back'))
             .catch(next);
     }
+
+    // [POST] /courses/handle-form-actions
+    handleFormActions(req, res, next) {
+        switch(req.body.action) {
+            case 'delete':
+                Course.delete({ _id: { $in: req.body.courseIds } })
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+            case 'update':
+                res.json('updated')
+                break;
+            default:
+                res.json({ message: 'ACTIONS IS INVALID!!!' });
+        }
+    }
 }
 
 module.exports = new Coursescontroller();
