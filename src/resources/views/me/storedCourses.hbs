@@ -21,9 +21,18 @@
             <tr>
                 <td></td>
                 <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Slug</th>
-                <th scope="col" colspan="2">Create time</th>
+                <th scope="col">
+                    Name
+                    {{{sortable 'name' _sort}}}
+                </th>
+                <th scope="col">
+                    Slug
+                    {{{sortable 'slug' _sort}}}
+                </th>
+                <th scope="col" colspan="2">
+                    Create time
+                    {{{sortable 'createdAt' _sort}}}
+                </th>
             </tr>
         </thead>
         <tbody>
